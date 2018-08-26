@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+    git-server:
+        container_name: Geonosis-git
+        build: ./git-server/
+        ports:
+            - "22:22"
+        volumes:
+            - ./git-server/ssh_keys:/home/admin/.ssh
+            - scripts:/admin
+
+    web-server:
+        container_name: Geonosis-web
+        build: ./web-server/
+        ports:
+            - 443:443
+        volumes:
+            - scripts:/scripts
+
+volumes:
+     scripts: 
